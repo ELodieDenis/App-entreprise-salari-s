@@ -13,6 +13,7 @@ const SelectEmployee = () => {
     const [serviceCompanyPersons, setServiceCompanyPersons] = useState(null);
     const [salaryCompagnyPersons, setSalaryCompagnyPersons] = useState(null);
     const [ averageSalaries, setAverageSalaries ] = useState(null)
+    const [ chartWidth, setChartWidth ] = useState(600);
 
     const handleChange = (e) => {
         const personsName = e.target.value;
@@ -29,6 +30,21 @@ const SelectEmployee = () => {
         const salaryCompagny = personsNew.find(s => s.nom === personsName);
         setSalaryCompagnyPersons(salaryCompagny);
     };
+
+    useEffect(() => {
+        const updateChartWidth = () => {
+            const width = window.innerWidth * 0.6;
+            setChartWidth(width);
+        };
+
+        updateChartWidth();
+
+        window.addEventListener('resize', updateChartWidth);
+
+        return () => {
+            window.removeEventListener('resize', updateChartWidth);
+        };
+    }, []);
 
     useEffect(() => {
         const salaryPerYear = {};
@@ -77,7 +93,7 @@ const SelectEmployee = () => {
             <div className='div div_choosePersons'>
                 <span className='div_label_persons'>Rechercher un employé : &nbsp;</span>
                 <select name="choose" className='div_label_select_persons' onChange={handleChange}>
-                    {personsNew.map((persons, id) => (
+                    {personsNew.sort((a, b) => a.nom.localeCompare(b.nom)).map((persons, id) => (
                         <option value={persons.nom} key={id}>
                             {persons.nom.toUpperCase()} {persons.prenom}
                         </option>
@@ -112,7 +128,7 @@ const SelectEmployee = () => {
                 {salaryCompagnyPersons && (
                     <>
                         <h3>Salaires de {salaryCompagnyPersons.nom.toUpperCase()} {salaryCompagnyPersons.prenom}</h3>
-                        <LineChart width={600} height={300} data={mergedData}>
+                        <LineChart height={300} width={chartWidth}data={mergedData}>
                             <CartesianGrid stroke="#ccc" />
                             <XAxis dataKey="annee" />
                             <YAxis />

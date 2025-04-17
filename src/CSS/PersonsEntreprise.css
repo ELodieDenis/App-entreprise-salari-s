@@ -1,7 +1,9 @@
+
 table {
     width: auto;
     margin: auto; /* centre horizontalement */
     border-collapse: collapse;
+    margin-top: 20px;
 }
   
 th{

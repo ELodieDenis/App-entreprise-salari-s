@@ -6,6 +6,8 @@ import '../CSS/PersonsEntreprise.css'
 const PersonsEntreprise = () => {
     const entrepriseNew = personsEntreprise
 
+    const sortedEntreprise = [...entrepriseNew].sort((a, b) => a.nom.localeCompare(b.nom))
+
     return (
         <div>
             <table>
@@ -19,9 +21,9 @@ const PersonsEntreprise = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {entrepriseNew.map((entreprise, id) => (
+                    {sortedEntreprise.map((entreprise, id) => (
                         <tr key={id}>
-                            <td>{entreprise.nom}</td>
+                            <td>{entreprise.nom.toUpperCase()}</td>
                             <td>{entreprise.prenom}</td>
                             <td>{entreprise.dateNaissance}</td>
                             <td>{entreprise.dateEntreeEntreprise}</td>
