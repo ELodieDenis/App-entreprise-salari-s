@@ -1,0 +1,32 @@
+table {
+    width: auto;
+    margin: auto; /* centre horizontalement */
+    border-collapse: collapse;
+}
+  
+th{
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+td{
+    border: 1px solid black;
+    padding: 8px;
+
+}
+
+.data_users{
+    display: flex;
+    justify-content: center;
+}
+
+.ul_data_users{
+    align-items: end;
+    padding-top: 20px;
+}
+
+li{
+    display: flex;
+    justify-content: left;
+}

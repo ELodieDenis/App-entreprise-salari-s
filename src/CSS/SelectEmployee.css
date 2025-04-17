@@ -1,0 +1,33 @@
+.div_persons{
+    /* display: flex; */
+    /* justify-content: right; */
+    padding-left: 50px;
+    padding-bottom: 50px;
+}
+
+p{
+    margin: 0;
+}
+
+.div_choosePersons{
+    display: flex;
+    justify-content: left;
+    padding: 10px 0px;
+}
+
+/* .div_birthPersons,
+.div_companyDatePersons{
+    display: flex;
+    justify-content: left;
+    padding: 0px 0px 10px 50px;
+} */
+
+.div_span{
+    display: flex;
+    justify-content: left;
+    padding: 0px 0px 10px 50px;
+}
+
+.span_div_span{
+    font-size: large;
+}
