@@ -14,7 +14,7 @@ import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
 
-const [ mode, setMode ] = useState("light")
+const [ mode, setMode ] = useState("dark")
 
 const theme = useMemo(() =>
   createTheme({

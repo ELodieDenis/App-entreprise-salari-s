@@ -9,7 +9,6 @@ const AddPerson = () => {
     const [service, setService] = useState('');
 
     const onChangeNom = () => {
-        
         console.log("prénom ajouté")
     }
 
@@ -33,12 +32,14 @@ const AddPerson = () => {
         setDateNaissance('');
         setDateEntreeEntreprise('');
         setService('');
+
+        console.log(nom)
     };
 
     return (
         <div className='addPersons'>
             <h2>Ajouter une personne</h2>
-            <form className='form_addPersons'>
+            <form className='form_addPersons' onSubmit={() => handleAddPerson()}>
                 <div className='div_form_addPersons'>
                     <div className='div_addPersons_nom_prenom'>
                         <input

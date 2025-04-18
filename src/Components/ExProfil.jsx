@@ -5,7 +5,10 @@ function ExProfil({nom, prenom}) {
         <div>
             <h2>Nom : {nom}</h2>
             <p>Prénom : {prenom}</p>
+
+            
         </div>
+
     );
 };
 

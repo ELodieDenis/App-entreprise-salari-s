@@ -1,8 +1,33 @@
 import React from 'react';
 import ExProfil from '../Components/ExProfil.jsx';
+import { useState, useEffect } from 'react';
 
 function ExAddPerson() {
 
+    const [ valueInput, setValueInput ] = useState("")
+    
+    const[ profession, setProfession ] = useState([])
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        setProfession(prevProfessions => [...prevProfessions, valueInput])
+
+        setValueInput("")
+
+        console.log(valueInput)
+    }
+
+    const handleChange = (e) => {
+        setValueInput(e.target.value)
+    }
+
+    useEffect(() => {
+        if(profession.length > 0) {
+            console.log(profession);
+            console.log(profession.length)
+        }
+    }, [profession])
 
     return (
         <div>
@@ -11,6 +36,41 @@ function ExAddPerson() {
             <ExProfil nom="Durand" prenom="Alice"/>
             <ExProfil nom="Dupond" prenom="Frédéric"/>
             <ExProfil nom="Toul" prenom="Théo"/>
+
+            <form action="" style={{
+                padding: '50px'}} onSubmit={handleSubmit}>
+                <label>
+                    <input type="text" placeholder='Profession'
+                    value={valueInput}
+                    onChange={handleChange}
+                    />
+                </label>
+                <button style={{
+                    marginLeft:'10px'
+                }}>Créer</button>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Exemple</th>
+                        <th>Prénom</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>{profession[0]}</th>
+                    </tr>
+                    <tr>
+                        <th>{profession[1]}</th>
+                    </tr>
+                    <tr>
+                        <th>{profession[2]}</th>
+                    </tr>
+                    <tr>
+                        <th>{profession[3]}</th>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     );
 };
