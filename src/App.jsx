@@ -8,7 +8,9 @@ import AjoutPage from "./Pages/AjoutPage";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Box, CssBaseline, Button } from "@mui/material";
 import { deepOrange, blueGrey } from "@mui/material/colors";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
 
@@ -20,7 +22,10 @@ const theme = useMemo(() =>
       mode: mode,
       primary: deepOrange,
       secondary: blueGrey,
-    },
+      background: {
+        default: mode === "light" ? "white" : "#333", 
+      },
+    }, 
   }), [mode]
 );
 
@@ -28,36 +33,88 @@ const toggleMode = () => {
   setMode((prev) => (prev === "light" ? "dark" : "light"));
 };
 
+const isDark = theme.palette.mode === "dark"
 
-// const [ open, setOpen ] = useState(true)
-// const toggleDrawer = () => {
-//   setOpen(!open)
-// }
+useEffect(() => {
+  document.body.className = isDark ? "dark" : "white";
+}, [isDark]);
+
+const [ hoveredIndex, setHoveredIndex ] = useState(null);
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Box sex={{display: "flex"}}>
       <Router>
-        <div className="App">
-          <header>
-            <nav className="navbar">
+        <div className="App" style={{
+          backgroundColor: isDark ? "#333" : "white",
+          color: isDark ? "#f0f0f0" : "#000"
+        }}>
+          <header style={{
+            backgroundColor: isDark ? "#333" : "white",
+          }}>
+            <nav className="navbar" style={{
+              backgroundColor: isDark ? "#333" : "white",
+              color: isDark ? "#f0f0f0" : "#000",
+            }}>
               <ul className="ul_navbar">
-                <li className="ul_li_navbar li_accueil routeDefault">
-                  <Link to="/">Accueil</Link>
+              <li className="ul_li_navbar li_accueil routeDefault">
+                  <Link
+                    to="/"
+                    onMouseEnter={() => setHoveredIndex(0)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                    style={{
+                      color: hoveredIndex === 0 ? (isDark ? "#56CCF2" : "#2F80ED") : (isDark ? "#f0f0f0" : "#333"),
+                      textDecoration: "none"
+                    }}
+                  >Accueil</Link>
                 </li>
                 <li className="ul_li_navbar li_recherche">
-                  <Link to="/recherche">Recherche</Link>
+                  <Link
+                    to="/recherche"
+                    onMouseEnter={() => setHoveredIndex(1)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                    style={{
+                      color: hoveredIndex === 1 ? (isDark ? "#56CCF2" : "#2F80ED") : (isDark ? "#f0f0f0" : "#333"),
+                      textDecoration: "none"
+                    }}
+                  >Recherche</Link>
                 </li>
                 <li className="ul_li_navbar li_liste">
-                  <Link to="/liste">Liste</Link>
+                  <Link
+                    to="/liste"
+                    onMouseEnter={() => setHoveredIndex(2)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                    style={{
+                      color: hoveredIndex === 2 ? (isDark ? "#56CCF2" : "#2F80ED") : (isDark ? "#f0f0f0" : "#333"),
+                      textDecoration: "none"
+                    }}
+                  >Liste</Link>
                 </li>
                 <li className="ul_li_navbar li_ajout">
-                  <Link to="/ajouter">Ajouter</Link>
+                  <Link
+                    to="/ajouter"
+                    onMouseEnter={() => setHoveredIndex(3)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                    style={{
+                      color: hoveredIndex === 3 ? (isDark ? "#56CCF2" : "#2F80ED") : (isDark ? "#f0f0f0" : "#333"),
+                      textDecoration: "none"
+                    }}
+                  >Ajouter</Link>
                 </li>
                 <li className="dark_mode">
-                    <Button onClick={toggleMode} variant="contained">
-                      Mode {mode === "light" ? "Sombre" : "Clair"}
+                    <Button onClick={toggleMode} variant="contained" sx={{
+                    backgroundColor: isDark ? "#333" : "#f0f0f0",
+                    color: isDark ? "#fff" : "#000",
+                    '&:hover': {
+                    backgroundColor: isDark ? "#333" : "#f0f0f0", 
+                    boxShadow: "none",
+                    borderRadius: 0,
+                    },
+                    boxShadow: "none",
+                    borderRadius: 0,
+                    }}>
+                      <FontAwesomeIcon icon={isDark ? faSun : faMoon} style={{ marginRight: 8 }} />
                     </Button>
                   </li>
               </ul>
@@ -80,4 +137,6 @@ const toggleMode = () => {
 }
 
 export default App;
+
+
 

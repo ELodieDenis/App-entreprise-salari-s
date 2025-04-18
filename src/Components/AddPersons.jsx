@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import personsEntreprise from '../JSON/personsEntreprise.json'
 import '../CSS/AppPersons.css'
 
 const AddPerson = () => {
@@ -8,6 +7,11 @@ const AddPerson = () => {
     const [dateNaissance, setDateNaissance] = useState('');
     const [dateEntreeEntreprise, setDateEntreeEntreprise] = useState('');
     const [service, setService] = useState('');
+
+    const onChangeNom = () => {
+        
+        console.log("prénom ajouté")
+    }
 
     const handleAddPerson = () => {
         const newPerson = {
@@ -54,7 +58,7 @@ const AddPerson = () => {
                     </div>
                     <div className='div_addPersons_dates'>
                         <input
-                            className='input_addPersons input_dates input_date_dateNaissance'
+                          className='input_addPersons input_dates input_date_dateNaissance'
                             type="date"
                             value={dateNaissance}
                             onChange={(e) => setDateNaissance(e.target.value)}
