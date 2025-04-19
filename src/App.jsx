@@ -35,9 +35,16 @@ const toggleMode = () => {
 
 const isDark = theme.palette.mode === "dark"
 
+
 useEffect(() => {
   document.body.className = isDark ? "dark" : "white";
-}, [isDark]);
+  const table = document.querySelector('table')
+const ths = document.querySelectorAll('th')
+  table.style.border = isDark ? '2px solid green' : "2px solid blue"
+  ths.forEach((th) => {
+    th.style.border = isDark ? '2px solid green' : '2px solid blue'
+  })
+}, [mode]);
 
 const [ hoveredIndex, setHoveredIndex ] = useState(null);
 
